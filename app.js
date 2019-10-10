@@ -8,6 +8,7 @@ var app = express();
 
 // Cargar rutas
 var person_routes = require('./routes/person');
+var s3_routes     = require('./routes/s3.router');
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -29,5 +30,6 @@ app.use((req, res, next) => {
 // Ruta base
 app.use('/', express.static('client', { redirect: false }));
 app.use('/api', person_routes);
+app.use('/api', s3_routes);
 
 module.exports = app;
